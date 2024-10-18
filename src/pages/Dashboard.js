@@ -15,7 +15,7 @@ export default function Dashboard() {
     useEffect(() => {
         setLoading(true);
 
-        getWeatherData('Kyiv,Ukraine')
+        getWeatherData('Kolomyia,Ukraine')
             .then((data) => {
                 setWeatherData(data);
                 console.log(data);
@@ -36,10 +36,12 @@ export default function Dashboard() {
         return <div className="text-center my-5">Error fetching weather data: {error.message}</div>;
     }
 
+    console.log(weatherData)
+
     return (
-        <div className="row p-5 w-100">
+        <div className="row p-4 w-100">
             <div className="col-8">
-                <MainInfo description={weatherData.description} temp={weatherData.currentConditions.temp} icon={weatherData.currentConditions.icon}/>
+                <MainInfo city={weatherData.address} description={weatherData.description} temp={weatherData.currentConditions.temp} icon={weatherData.currentConditions.icon}/>
                 <HoursForecast hours={today.hours}/>
                 <DetailInfo data={weatherData.currentConditions}/>
             </div>
